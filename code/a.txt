@@ -1,0 +1,21 @@
+sudo su 
+sudo pacman-mirrors -i -c China -m rank
+
+
+sudo nano /etc/pacman.conf
+
+[archlinuxcn]
+SigLevel=Optional TrustAll
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+
+sudo pacman -Syu
+
+pacman -S fcitx fcitx-im fcitx-configtool kcm-fcitx fcitx-sunpinyiin fcitx-libpinyin
+
+nano /etc/profile
+
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+
+sudo pacman -S yay
