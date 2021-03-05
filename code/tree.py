@@ -4,6 +4,7 @@ class Node(object):
         self.first_child=frist_child
         self.next_brother=next_brother
         self.value=value
+        self.tag=0
 
 
 user=Node(name='user',value=1)
@@ -71,17 +72,39 @@ fall97.first_child=prog3
 prog3.next_brother=prog4
 prog4.next_brother=grades2
 
+
+
+
 #前序遍历的递归写法
-def preoder(node):
-    if node is not None:
+def preorder(node):
+    if node is not  None:
         print(node.name)
-        preoder(node.first_child)
-        preoder(node.next_brother)
+        preorder(node.first_child)
+        preorder(node.next_brother)
+
+# 用列表模拟栈的非递归写法(完全模拟栈的操作)
+def my1(node):
+    lst = []   #栈的初始化
+    while len(lst) != 0 or node is not None:
+        if node is not None:   #对于一个节点如果不是空
+            lst.append(node)
+            print(node.name)#打印
+            node.tag = 1   #标记已经访问第一个孩子节点
+            node =node.first_child      #对于任何节点都是先查找其第一个子节点  深度优先
+        else:
+            node = lst[-1]
+            while node.tag==2:  #要将该出队的出干净
+                if len(lst)>=2:  #对于列表还有最后一个值的考虑
+                    lst.pop()
+                    node = lst[-1]
+            if node.tag==1:
+                node.tag = 2  #标记已经访问了兄弟节点
+                node = node.next_brother
 
 
 
-# 用列表模拟栈的非递归写法
-def my(node):
+# 用列表模拟栈的非递归写法（优化版本）
+def my2(node):
     lst = []   #栈的初始化
     depth = -1
     while len(lst) != 0 or node is not None:
@@ -95,24 +118,3 @@ def my(node):
             lst.pop()  #出队
             depth-=1
             node=node.next_brother #遍历兄弟节点
-
-
-
-def my1():
-    lst = [user]   #栈的初始化
-    depth = -1
-    node=lst[-1]
-    while len(lst) != 0:
-        if node is not None:   #对于一个节点如果不是空
-            lst.append(node)
-            depth=depth+1   #入队
-            print('     ' * depth, node.name)#打印
-            node =node.first_child#对于任何节点都是先查找其第一个子节点  深度优先
-        else:  #运行至此 之前的都是遍历子节点  深度优先   子节点没了 开始兄弟节点  但是一变兄弟节点之后又开始立刻子节点遍历
-            node=lst[-1] #先存下栈顶元素的只  因为要node.next_brother
-            lst.pop()  #出队
-            depth-=1
-            node=node.next_brother #遍历兄弟节点
-
-
-my1()
