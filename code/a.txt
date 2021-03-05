@@ -8,6 +8,9 @@ sudo nano /etc/pacman.conf
 SigLevel=Optional TrustAll
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 
+sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
+
+
 sudo pacman -Syu
 
 pacman -S fcitx fcitx-im fcitx-configtool kcm-fcitx fcitx-sunpinyiin fcitx-libpinyin
@@ -19,3 +22,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 
 sudo pacman -S yay
+
+
+sudo pacman -S --needed base-devel  
+解决Cannot find the strip binary required for object file stripping.
