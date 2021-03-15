@@ -26,3 +26,13 @@ sudo pacman -S yay
 
 sudo pacman -S --needed base-devel  
 解决Cannot find the strip binary required for object file stripping.
+
+wps安装
+yay -S wps-office-cn
+yay -S ttf-wps-fonts     #字体
+yay -S wps-office-mui-zh-cn  #中文包
+
+
+想使用apple music 等可以网页端执行的软件
+可以直接用chrome创建快捷方式
+更多工具  创建快捷方式   并在设置的pop-ups redirect将applemusic网站添加进去
