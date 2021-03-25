@@ -1,4 +1,2 @@
-a=[1]
-a.pop()
-print(a)
-print(len(a))
+a='1'
+print(id(a))
